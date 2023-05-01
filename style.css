@@ -18,12 +18,14 @@ body{
   background-color: white;
 }
 .game{
+  display: flex;
+  justify-content: space-evenly;
+}
+.gamespace{
   width: 75%;
   background-color: black;
   color: white;
   padding: 20px;
-  display: flex;
-  justify-content: space-evenly;
 }
 .loc{
   margin: 10px;
@@ -35,7 +37,13 @@ body{
   background-color: rgb(32, 29, 29);
   padding: 20px;
   margin: 10px;
-  min-width: 200px;
+  width: 25%;
+}
+.alert{
+  width: 100%;
+  background-color: rgb(32, 29, 29);
+  padding: 20px;
+  margin: 10px;
 }
 input{
   background: none;
@@ -51,12 +59,21 @@ input:focus{
 
 
 @media only screen and (max-width: 1068px) {
+  body{
+    display: block;
+  }
   .sidebar{
-    width: 43.33%;
+    width: 100%;
   }
   .game{
-    width: 56.67%;
+    width: 100%;
     display: block;
+  }
+  .brewer,
+  .recipesIngredients,
+  .loc,
+  .currency{
+    width: 100%;
   }
 }
 
@@ -70,6 +87,10 @@ button{
   background-color: black;
   color: yellow;
   padding: 10px;
+}
+
+button:hover{
+  border: 1px solid white;
 }
 
 input{

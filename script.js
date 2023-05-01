@@ -22,6 +22,8 @@ let ingredients = {
   fourLeafCloverDisplay: document.querySelector('.fourLeaf'),
 };
 
+const alerts = document.querySelector('.alertBox');
+
 function updateVals() {
   currency.coinDis.textContent = currency.coin;
   currency.researchDis.textContent = currency.research;
@@ -30,6 +32,18 @@ function updateVals() {
   ingredients.suspiciousPlantDis.textContent = ingredients.suspiciousPlant;
   ingredients.suspiciousMushroomDis.textContent = ingredients.suspiciousMushroom;
   ingredients.fourLeafCloverDis.textContent = ingredients.fourLeafClover;
+}
+
+function convert() {
+  if (currency.coin >= 5) {
+    currency.coin = currency.coin - 5;
+    currency.research = currency.research + 1;
+    alerts.textContent = "Success! Converted 5 coins to 1 research";
+    updateVals();
+  }
+  else{
+    alerts.textContent = "Error! Not enough coins!";
+  }
 }
 
 //ON START
