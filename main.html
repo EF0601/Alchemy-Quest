@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alchemy Quest: Build your way to the very top.</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="sidebar">
+    <h1>Alchemy Quest</h1>
+    <h4>Build your alchemy skills and earn points. Finish by making some suspicious brew- I mean, wait what?</h4>
+    <a>Launcher <i>In progress</i></a><br>
+    <button>Hints <i>In progress</i></button>
+    <p class="hints"></p>
+  </div>
+  <div class="game">
+    <div class="currency">
+      <h2><i class="fas fa-coins"></i> & <i class="far fa-lightbulb"></i></h2><br>
+      <i class="fas fa-coins"></i>: <span class="coins"></span><br>
+      <i class="far fa-lightbulb"></i>: <span class="research"></span><br>
+    </div>
+    <div class="loc">
+      <p>You are at:</p>
+      <h2 class="location">Home</h2>
+
+      <button>Go to (10 <i class="fas fa-coins"></i>) <input type="text" class="travelLoc" placeholder="Location"></button>
+      <ul>
+        <li>Home</li>
+        <li>Market</li>
+      </ul>
+    </div>
+    <div class="brewer">
+      <h1>Brewer</h1>
+      <p>Type BLANK for nothing. <br> Ingredients MUST be in order.</p>
+      <input type="text" placeholder="Ingredient 1."><br>
+      <input type="text" placeholder="Ingredient 2."><br>
+      <input type="text" placeholder="Ingredient 3."><br><br>
+      <button onclick="brew()" title="mix"><i class="fas fa-mortar-pestle"></i></button>
+    </div>
+    <div class="recipesIngredients">
+      <h2>Recipes</h2>
+      <ul>
+        <li>Healing potion: Suspicious plant + diluted liquid</li>
+        <li>Light potion: Suspicious mushroom + diluted liquid</li>
+        <li class="luckRecipe">Potion of luck: 4-leaf clover + suspicious mushroom + diluted liquid</li>
+      </ul>
+      <button>Buy a recipe from the old farmer (50 <i class="far fa-lightbulb"></i>)</button>
+
+      <h2>Ingredients</h2>
+      <ul>
+        <li>Diluted liquid: <span class="dilutedLiquid"></span></li>
+        <li>Suspicious plant: <span class="suspiciousPlant"></span></li>
+        <li>Suspicious mushroom: <span class="suspiciousMushroom"></span></li>
+        <li class="fourLeaf">4-leaf clover: <span class="fourLeafClover"></span></li>
+      </ul>
+    </div>
+  </div>
+</body>
+<script src="https://kit.fontawesome.com/71d265c49d.js" crossorigin="anonymous"></script>
+<script src="script.js"></script>
+</html>

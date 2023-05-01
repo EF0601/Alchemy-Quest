@@ -1,0 +1,77 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  user-select: none;
+}
+
+body{
+  display: flex;
+  justify-content: space-evenly;
+  background-color: rgb(32, 29, 29);
+  padding: 20px;
+}
+.sidebar{
+  width: 25%;
+  padding: 20px;
+  background-color: white;
+}
+.game{
+  width: 75%;
+  background-color: black;
+  color: white;
+  padding: 20px;
+  display: flex;
+  justify-content: space-evenly;
+}
+.loc{
+  margin: 10px;
+}
+.brewer,
+.recipesIngredients,
+.loc,
+.currency{
+  background-color: rgb(32, 29, 29);
+  padding: 20px;
+  margin: 10px;
+  min-width: 200px;
+}
+input{
+  background: none;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 5px;
+  border-bottom: 1px solid black;
+}
+input:focus{
+  border-bottom: 1px solid white;
+}
+
+
+@media only screen and (max-width: 1068px) {
+  .sidebar{
+    width: 43.33%;
+  }
+  .game{
+    width: 56.67%;
+    display: block;
+  }
+}
+
+i{
+  font-family: “Font Awesome 5 Free“;
+  font-weight: 900;
+}
+button{
+  border: none;
+  outline: none;
+  background-color: black;
+  color: yellow;
+  padding: 10px;
+}
+
+input{
+  text-transform: uppercase;
+}
