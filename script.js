@@ -1,5 +1,5 @@
 let currency = {
-  coin: 10,
+  coin: 15,
   research: 5,
 
   coinDis: document.querySelector('.coins'),
@@ -18,9 +18,18 @@ let ingredients = {
   fourLeafCloverDis: document.querySelector('.fourLeafClover'),
 
   //locked items
-  knownItems: ["dilutedLiquid", "suspiciousPlant", "suspiciousMushroom"],
+  knownItems: ["", "BLANK", "DILUTED LIQUID", "SUSPICIOUS PLANT", "SUSPICIOUS MUSHROOM"],
   fourLeafCloverDisplay: document.querySelector('.fourLeaf'),
 };
+
+let inputs = {
+  //brewer
+  input1: document.querySelector('.input1'),
+  input2: document.querySelector('.input2'),
+  input3: document.querySelector('.input3'),
+}
+
+let currentRecipe = [];
 
 const alerts = document.querySelector('.alertBox');
 
@@ -44,6 +53,60 @@ function convert() {
   else{
     alerts.textContent = "Error! Not enough coins!";
   }
+}
+
+function brew(){
+  for(let i = 0; i <= ingredients.knownItems.length; i++){
+    if(ingredients.knownItems[i] === inputs.input1.value){
+      currentRecipe.push(inputs.input1);
+      break;
+    }
+    else{
+      if(i == ingredients.knownItems.length){
+        alerts.textContent = "The ingredient you tried to enter is not valid or you did not unlock it yet."
+        currentRecipe = [];
+      }
+    }
+  }
+  for(let i = 0; i <= ingredients.knownItems.length; i++){
+    if(ingredients.knownItems[i] === inputs.input2.value){
+      currentRecipe.push(inputs.input2);
+      break;
+    }
+    else{
+      if(i == ingredients.knownItems.length){
+        alerts.textContent = "The ingredient you tried to enter is not valid or you did not unlock it yet."
+        currentRecipe = [];
+      }
+    }
+  }
+  for(let i = 0; i <= ingredients.knownItems.length; i++){
+    if(ingredients.knownItems[i] === inputs.input3.value){
+      currentRecipe.push(inputs.input3);
+      break;
+    }
+    else{
+      if(i == ingredients.knownItems.length){
+        alerts.textContent = "The ingredient you tried to enter is not valid or you did not unlock it yet."
+        currentRecipe = [];
+      }
+    }
+  }
+
+  if(currentRecipe.length === 3){
+    if(currentRecipe === ["SUSPICIOUS PLANT", "DILUTED LIQUID", "BLANK"]){
+      alerts.textContent("Congratulations! You made a 'Healing potion', earning you 3 coins.")
+      currency.coin = currency.coin + 3;
+      ingredients.dilutedLiquid--
+      ingredients.suspiciousPlant--
+      currentRecipe = [];
+    }
+  }
+  else{
+    alerts.textContent = "You did not enter all the ingredients. If you don't need anything for an ingredient slot, please put BLANK."
+  }
+
+  updateVals()
 }
 
 //ON START
