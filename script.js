@@ -27,9 +27,10 @@ let inputs = {
   input1: document.querySelector('.input1'),
   input2: document.querySelector('.input2'),
   input3: document.querySelector('.input3'),
-}
+};
 
 let currentRecipe = [];
+let recipes = [["SUSPICIOUS PLANT", "DILUTED LIQUID", "BLANK"]];
 
 const alerts = document.querySelector('.alertBox');
 
@@ -58,55 +59,56 @@ function convert() {
 function brew(){
   for(let i = 0; i <= ingredients.knownItems.length; i++){
     if(ingredients.knownItems[i] === inputs.input1.value){
-      currentRecipe.push(inputs.input1);
+      currentRecipe.push(inputs.input1.value);
       break;
     }
     else{
       if(i == ingredients.knownItems.length){
-        alerts.textContent = "The ingredient you tried to enter is not valid or you did not unlock it yet."
+        alerts.textContent = "The ingredient you tried to enter is not valid or you did not unlock it yet.";
         currentRecipe = [];
       }
     }
   }
   for(let i = 0; i <= ingredients.knownItems.length; i++){
     if(ingredients.knownItems[i] === inputs.input2.value){
-      currentRecipe.push(inputs.input2);
+      currentRecipe.push(inputs.input2.value);
       break;
     }
     else{
       if(i == ingredients.knownItems.length){
-        alerts.textContent = "The ingredient you tried to enter is not valid or you did not unlock it yet."
+        alerts.textContent = "The ingredient you tried to enter is not valid or you did not unlock it yet.";
         currentRecipe = [];
       }
     }
   }
   for(let i = 0; i <= ingredients.knownItems.length; i++){
     if(ingredients.knownItems[i] === inputs.input3.value){
-      currentRecipe.push(inputs.input3);
+      currentRecipe.push(inputs.input3.value);
       break;
     }
     else{
       if(i == ingredients.knownItems.length){
-        alerts.textContent = "The ingredient you tried to enter is not valid or you did not unlock it yet."
+        alerts.textContent = "The ingredient you tried to enter is not valid or you did not unlock it yet.";
         currentRecipe = [];
       }
     }
   }
-
-  if(currentRecipe.length === 3){
-    if(currentRecipe === ["SUSPICIOUS PLANT", "DILUTED LIQUID", "BLANK"]){
-      alerts.textContent("Congratulations! You made a 'Healing potion', earning you 3 coins.")
-      currency.coin = currency.coin + 3;
-      ingredients.dilutedLiquid--
-      ingredients.suspiciousPlant--
-      currentRecipe = [];
+  setTimeout(() => {
+    if (currentRecipe.length === 3) {
+      if (currentRecipe.length === recipes[0].length && currentRecipe.every((value, index) => value === recipes[0][index])) {
+        alerts.textContent = "Congratulations! You made a 'Healing potion', earning you 3 coins.";
+        currency.coin = currency.coin + 3;
+        ingredients.dilutedLiquid--;
+        ingredients.suspiciousPlant--;
+        currentRecipe = [];
+      }
     }
-  }
-  else{
-    alerts.textContent = "You did not enter all the ingredients. If you don't need anything for an ingredient slot, please put BLANK."
-  }
+    else {
+      alerts.textContent = "You did not enter all the ingredients. If you don't need anything for an ingredient slot, please put BLANK.";
+    }
 
-  updateVals()
+    updateVals();
+  }, 1000);
 }
 
 //ON START
