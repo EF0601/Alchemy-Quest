@@ -15,14 +15,15 @@ body{
 .sidebar{
   width: 25%;
   padding: 20px;
-  background-color: white;
+  background-color: gray;
+  color: white;
 }
 .game{
   display: flex;
   justify-content: space-evenly;
 }
 .gamespace{
-  width: 75%;
+  width: 100%;
   background-color: black;
   color: white;
   padding: 20px;
@@ -33,7 +34,8 @@ body{
 .brewer,
 .recipesIngredients,
 .loc,
-.currency{
+.currency,
+.shop{
   background-color: rgb(32, 29, 29);
   padding: 20px;
   margin: 10px;
@@ -72,7 +74,8 @@ input:focus{
   .brewer,
   .recipesIngredients,
   .loc,
-  .currency{
+  .currency,
+  .shop{
     width: 100%;
   }
 }

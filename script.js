@@ -27,10 +27,22 @@ let inputs = {
   input1: document.querySelector('.input1'),
   input2: document.querySelector('.input2'),
   input3: document.querySelector('.input3'),
+
+  //shop
+  shopInput: document.querySelector('.shopInput'),
+};
+
+let lockedRecipes = {
+  luckRecipe: document.querySelector('.luckRecipe'),
+};
+
+let locs = {
+  currentLoc: "HOME",
+  unlockedLocs: ["HOME", "MARKET"],
 };
 
 let currentRecipe = [];
-let recipes = [["SUSPICIOUS PLANT", "DILUTED LIQUID", "BLANK"]];
+let recipes = [["SUSPICIOUS PLANT", "DILUTED LIQUID", "BLANK"], ["SUSPICIOUS MUSHROOM", "DILUTED LIQUID", "BLANK"]];
 
 const alerts = document.querySelector('.alertBox');
 
@@ -42,6 +54,15 @@ function updateVals() {
   ingredients.suspiciousPlantDis.textContent = ingredients.suspiciousPlant;
   ingredients.suspiciousMushroomDis.textContent = ingredients.suspiciousMushroom;
   ingredients.fourLeafCloverDis.textContent = ingredients.fourLeafClover;
+
+  if (locs.currentLoc === "HOME") {
+    document.querySelector('.brewer').style.display = "block";
+    document.querySelector('.shop').style.display = "none";
+  }
+  if (locs.currentLoc === "MARKET") {
+    document.querySelector('.brewer').style.display = "none";
+    document.querySelector('.shop').style.display = "block";
+  }
 }
 
 function convert() {
@@ -58,8 +79,8 @@ function convert() {
 
 function brew(){
   for(let i = 0; i <= ingredients.knownItems.length; i++){
-    if(ingredients.knownItems[i] === inputs.input1.value){
-      currentRecipe.push(inputs.input1.value);
+    if(ingredients.knownItems[i] === inputs.input1.value.toUpperCase()){
+      currentRecipe.push(inputs.input1.value.toUpperCase());
       break;
     }
     else{
@@ -70,8 +91,8 @@ function brew(){
     }
   }
   for(let i = 0; i <= ingredients.knownItems.length; i++){
-    if(ingredients.knownItems[i] === inputs.input2.value){
-      currentRecipe.push(inputs.input2.value);
+    if(ingredients.knownItems[i] === inputs.input2.value.toUpperCase()){
+      currentRecipe.push(inputs.input2.value.toUpperCase());
       break;
     }
     else{
@@ -82,8 +103,8 @@ function brew(){
     }
   }
   for(let i = 0; i <= ingredients.knownItems.length; i++){
-    if(ingredients.knownItems[i] === inputs.input3.value){
-      currentRecipe.push(inputs.input3.value);
+    if(ingredients.knownItems[i] === inputs.input3.value.toUpperCase()){
+      currentRecipe.push(inputs.input3.value.toUpperCase());
       break;
     }
     else{
@@ -95,11 +116,18 @@ function brew(){
   }
   setTimeout(() => {
     if (currentRecipe.length === 3) {
-      if (currentRecipe.length === recipes[0].length && currentRecipe.every((value, index) => value === recipes[0][index])) {
+      if (currentRecipe.length === recipes[0].length && currentRecipe.every((value, index) => value === recipes[0][index]) && ingredients.dilutedLiquid >= 1 && ingredients.suspiciousPlant >= 1) {
         alerts.textContent = "Congratulations! You made a 'Healing potion', earning you 3 coins.";
         currency.coin = currency.coin + 3;
         ingredients.dilutedLiquid--;
         ingredients.suspiciousPlant--;
+        currentRecipe = [];
+      }
+      if (currentRecipe.length === recipes[1].length && currentRecipe.every((value, index) => value === recipes[1][index]) && ingredients.dilutedLiquid >= 1 && ingredients.suspiciousMushroom >= 1) {
+        alerts.textContent = "Congratulations! You made a 'Light potion', earning you 4 coins.";
+        currency.coin = currency.coin + 4;
+        ingredients.dilutedLiquid--;
+        ingredients.suspiciousMushroom--;
         currentRecipe = [];
       }
     }
@@ -109,8 +137,75 @@ function brew(){
 
     updateVals();
   }, 1000);
+  // currentRecipe = [];
+}
+
+function del() {
+  currentRecipe = [];
+  alerts.textContent = "Success! Removed all ingredients brewer.";
+  inputs.input1.value = "";
+  inputs.input2.value = "";
+  inputs.input3.value = "";
+}
+
+let temp = "";
+
+function purchase() {
+  if (locs.currentLoc === "MARKET") {
+    for (let i = 0; i <= ingredients.knownItems.length; i++) {
+      if (ingredients.knownItems[i] === inputs.shopInput.value.toUpperCase()) {
+        temp = inputs.shopInput.value.toUpperCase();
+        break;
+      }
+      else {
+        if (i == ingredients.knownItems.length) {
+          alerts.textContent = "The ingredient you tried to enter is not valid or you did not unlock it yet.";
+          inputs.shopInput.value = "";
+        }
+      }
+    }
+    switch (temp) {
+      case 'DILUTED LIQUID':
+        if (currency.coin >= 1) {
+          currency.coin--;
+          ingredients.dilutedLiquid++;
+          alerts.textContent = "Purchased!";
+        }
+        else {
+          alerts.textContent = "No funds available!"
+        }
+        break;
+      case 'SUSPICIOUS PLANT':
+        if (currency.coin >= 1) {
+          currency.coin--;
+          ingredients.suspiciousPlant++;
+          alerts.textContent = "Purchased!";
+        }
+        else {
+          alerts.textContent = "No funds available!"
+        }
+        break;
+      case 'SUSPICIOUS MUSHROOM':
+        if (currency.coin >= 2) {
+          currency.coin = currency.coin - 2;
+          ingredients.suspiciousMushroom++;
+          alerts.textContent = "Purchased!";
+        }
+        else {
+          alerts.textContent = "No funds available!"
+        }
+        break;
+
+      default:
+        alerts.textContent = "The item you tried to purchase is not valid.";
+        break;
+    }
+
+  }
+  updateVals()
 }
 
 //ON START
 ingredients.fourLeafCloverDisplay.style.display = "none";
+lockedRecipes.luckRecipe.style.display = "none";
 updateVals();

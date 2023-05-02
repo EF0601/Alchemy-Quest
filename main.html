@@ -10,8 +10,8 @@
 <body>
   <div class="sidebar">
     <h1>Alchemy Quest</h1>
-    <h4>Build your alchemy skills and earn points. Finish by making some suspicious brew- I mean, wait what?</h4>
-    <a>Launcher <i>In progress</i></a><br>
+    <h4>Build your alchemy skills and earn points. Finish by making some suspicious brew- I mean, wait what?</h4><br>
+    <a>Launcher <i>In progress</i></a><br><br>
     <button>Hints <i>In progress</i></button>
     <p class="hints"></p>
   </div>
@@ -36,11 +36,23 @@
       </div>
       <div class="brewer">
         <h1>Brewer</h1>
-        <p>Type BLANK for nothing. <br> Ingredients MUST be in order. <br>Type in UPPERCASE.</p>
+        <p>Type BLANK for nothing. <br> Ingredients MUST be in order.</p>
         <input type="text" placeholder="Ingredient 1." class="input1"><br>
         <input type="text" placeholder="Ingredient 2." class="input2"><br>
         <input type="text" placeholder="Ingredient 3." class="input3"><br><br>
         <button onclick="brew()" title="mix"><i class="fas fa-mortar-pestle"></i></button>
+        <button onclick="del()" title="Cancel current mix."><i class="far fa-times-circle"></i></button>
+      </div>
+      <div class="shop">
+        <h1>Market</h1>
+        <p>Quality stuff for your potions!</p>
+        <input type="text" placeholder="What do you seek?" class="shopInput">
+        <button onclick="purchase()" title="Purchase item"><i class="fas fa-shopping-cart"></i></button>
+        <ul>
+          <li>Diluted liquid: 1 <i class="fas fa-coins"></i></li>
+          <li>Suspicious Plant: 1 <i class="fas fa-coins"></i></li>
+          <li>Suspicious Mushroom: 2 <i class="fas fa-coins"></i></li>
+        </ul>
       </div>
       <div class="recipesIngredients">
         <h2>Recipes</h2>
