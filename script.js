@@ -30,6 +30,9 @@ let inputs = {
 
   //shop
   shopInput: document.querySelector('.shopInput'),
+
+  //travel
+  travelInput: document.querySelector('.travelLoc'),
 };
 
 let lockedRecipes = {
@@ -72,43 +75,43 @@ function convert() {
     alerts.textContent = "Success! Converted 5 coins to 1 research";
     updateVals();
   }
-  else{
+  else {
     alerts.textContent = "Error! Not enough coins!";
   }
 }
 
-function brew(){
-  for(let i = 0; i <= ingredients.knownItems.length; i++){
-    if(ingredients.knownItems[i] === inputs.input1.value.toUpperCase()){
+function brew() {
+  for (let i = 0; i <= ingredients.knownItems.length; i++) {
+    if (ingredients.knownItems[i] === inputs.input1.value.toUpperCase()) {
       currentRecipe.push(inputs.input1.value.toUpperCase());
       break;
     }
-    else{
-      if(i == ingredients.knownItems.length){
+    else {
+      if (i == ingredients.knownItems.length) {
         alerts.textContent = "The ingredient you tried to enter is not valid or you did not unlock it yet.";
         currentRecipe = [];
       }
     }
   }
-  for(let i = 0; i <= ingredients.knownItems.length; i++){
-    if(ingredients.knownItems[i] === inputs.input2.value.toUpperCase()){
+  for (let i = 0; i <= ingredients.knownItems.length; i++) {
+    if (ingredients.knownItems[i] === inputs.input2.value.toUpperCase()) {
       currentRecipe.push(inputs.input2.value.toUpperCase());
       break;
     }
-    else{
-      if(i == ingredients.knownItems.length){
+    else {
+      if (i == ingredients.knownItems.length) {
         alerts.textContent = "The ingredient you tried to enter is not valid or you did not unlock it yet.";
         currentRecipe = [];
       }
     }
   }
-  for(let i = 0; i <= ingredients.knownItems.length; i++){
-    if(ingredients.knownItems[i] === inputs.input3.value.toUpperCase()){
+  for (let i = 0; i <= ingredients.knownItems.length; i++) {
+    if (ingredients.knownItems[i] === inputs.input3.value.toUpperCase()) {
       currentRecipe.push(inputs.input3.value.toUpperCase());
       break;
     }
-    else{
-      if(i == ingredients.knownItems.length){
+    else {
+      if (i == ingredients.knownItems.length) {
         alerts.textContent = "The ingredient you tried to enter is not valid or you did not unlock it yet.";
         currentRecipe = [];
       }
@@ -133,6 +136,7 @@ function brew(){
     }
     else {
       alerts.textContent = "You did not enter all the ingredients. If you don't need anything for an ingredient slot, please put BLANK.";
+      currentRecipe = [];
     }
 
     updateVals();
@@ -172,7 +176,7 @@ function purchase() {
           alerts.textContent = "Purchased!";
         }
         else {
-          alerts.textContent = "No funds available!"
+          alerts.textContent = "No funds available!";
         }
         break;
       case 'SUSPICIOUS PLANT':
@@ -182,7 +186,7 @@ function purchase() {
           alerts.textContent = "Purchased!";
         }
         else {
-          alerts.textContent = "No funds available!"
+          alerts.textContent = "No funds available!";
         }
         break;
       case 'SUSPICIOUS MUSHROOM':
@@ -192,7 +196,7 @@ function purchase() {
           alerts.textContent = "Purchased!";
         }
         else {
-          alerts.textContent = "No funds available!"
+          alerts.textContent = "No funds available!";
         }
         break;
 
@@ -202,7 +206,36 @@ function purchase() {
     }
 
   }
-  updateVals()
+  updateVals();
+}
+
+function travel() {
+  for (let i = 0; i <= locs.unlockedLocs.length; i++) {
+    if (locs.unlockedLocs[i] == inputs.travelInput.value.toUpperCase()) {
+
+      if (locs.currentLoc != inputs.travelInput.value.toUpperCase()) {
+        if (currency.coin >= 10) {
+          locs.currentLoc = inputs.travelInput.value.toUpperCase();
+          alerts.textContent = "Traveled to " + inputs.travelInput.value.toUpperCase();
+          document.querySelector('.location').textContent = inputs.travelInput.value.toUpperCase();
+          currency.coin = currency.coin - 10;
+          updateVals();
+        }
+        else{
+          alerts.textContent = "You don't have the funds!";
+        }
+      }
+      else {
+        alerts.textContent = "You're already at the location.";
+      }
+      break;
+    }
+    else {
+      if (i == locs.unlockedLocs.length) {
+        alerts.textContent = "The location you tried to enter is invalid, or it is not yet unlocked";
+      }
+    }
+  }
 }
 
 //ON START
