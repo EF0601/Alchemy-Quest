@@ -39,7 +39,10 @@ let inputs = {
 
 let lockedRecipes = {
   luckRecipe: document.querySelector('.luckRecipe'),
+  concentratedFluids: document.querySelector('.concentrateRecipe'),
 };
+
+let level = 0;
 
 let locs = {
   currentLoc: "HOME",
