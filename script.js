@@ -1,9 +1,11 @@
 let currency = {
-  coin: 15,
+  coin: 20,
   research: 5,
+  points: 0,
 
   coinDis: document.querySelector('.coins'),
   researchDis: document.querySelector('.research'),
+  pointsDis: document.querySelector('.points'),
 };
 
 let ingredients = {
@@ -52,6 +54,7 @@ const alerts = document.querySelector('.alertBox');
 function updateVals() {
   currency.coinDis.textContent = currency.coin;
   currency.researchDis.textContent = currency.research;
+  currency.pointsDis.textContent = currency.points;
 
   ingredients.dilutedLiquidDis.textContent = ingredients.dilutedLiquid;
   ingredients.suspiciousPlantDis.textContent = ingredients.suspiciousPlant;
@@ -73,6 +76,7 @@ function convert() {
     currency.coin = currency.coin - 5;
     currency.research = currency.research + 1;
     alerts.textContent = "Success! Converted 5 coins to 1 research";
+    currency.points = currency.points + 1;
     updateVals();
   }
   else {
@@ -121,6 +125,7 @@ function brew() {
     if (currentRecipe.length === 3) {
       if (currentRecipe.length === recipes[0].length && currentRecipe.every((value, index) => value === recipes[0][index]) && ingredients.dilutedLiquid >= 1 && ingredients.suspiciousPlant >= 1) {
         alerts.textContent = "Congratulations! You made a 'Healing potion', earning you 3 coins.";
+        currency.points = currency.points + 2;
         currency.coin = currency.coin + 3;
         ingredients.dilutedLiquid--;
         ingredients.suspiciousPlant--;
@@ -128,6 +133,7 @@ function brew() {
       }
       if (currentRecipe.length === recipes[1].length && currentRecipe.every((value, index) => value === recipes[1][index]) && ingredients.dilutedLiquid >= 1 && ingredients.suspiciousMushroom >= 1) {
         alerts.textContent = "Congratulations! You made a 'Light potion', earning you 4 coins.";
+        currency.points = currency.points + 3;
         currency.coin = currency.coin + 4;
         ingredients.dilutedLiquid--;
         ingredients.suspiciousMushroom--;
@@ -135,7 +141,7 @@ function brew() {
       }
     }
     else {
-      alerts.textContent = "You did not enter all the ingredients. If you don't need anything for an ingredient slot, please put BLANK.";
+      alerts.textContent = "An error occurred while brewing. Did you: A) forget to include 'blank' for no ingredients or B) you ran out of ingredients?";
       currentRecipe = [];
     }
 
@@ -146,7 +152,7 @@ function brew() {
 
 function del() {
   currentRecipe = [];
-  alerts.textContent = "Success! Removed all ingredients brewer.";
+  alerts.textContent = "Success! Removed all ingredients from the brewer.";
   inputs.input1.value = "";
   inputs.input2.value = "";
   inputs.input3.value = "";
@@ -219,6 +225,7 @@ function travel() {
           alerts.textContent = "Traveled to " + inputs.travelInput.value.toUpperCase();
           document.querySelector('.location').textContent = inputs.travelInput.value.toUpperCase();
           currency.coin = currency.coin - 10;
+          currency.points = currency.points + 1;
           updateVals();
         }
         else{
