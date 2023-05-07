@@ -144,7 +144,7 @@ function brew() {
         ingredients.suspiciousMushroom--;
         currentRecipe = [];
       }
-      if (currentRecipe.length === recipes[2].length && currentRecipe.every((value, index) => value === recipes[2][index]) && ingredients.dilutedLiquid >= 1 && ingredients.fourLeafClover >= 1) {
+      if (level === 1 && currentRecipe.length === recipes[2].length && currentRecipe.every((value, index) => value === recipes[2][index]) && ingredients.dilutedLiquid >= 1 && ingredients.fourLeafClover >= 1) {
         alerts.textContent = "Congratulations! You made a 'Luck potion', earning you 8 coins.";
         currency.points = currency.points + 5;
         currency.coin = currency.coin + 8;
