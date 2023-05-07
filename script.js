@@ -22,6 +22,7 @@ let ingredients = {
   //locked items
   knownItems: ["", "BLANK", "DILUTED LIQUID", "SUSPICIOUS PLANT", "SUSPICIOUS MUSHROOM"],
   fourLeafCloverDisplay: document.querySelector('.fourLeaf'),
+  fourLeafCloverMarket: document.querySelector('.fourleafmarket'),
 };
 
 let inputs = {
@@ -72,6 +73,7 @@ function updateVals() {
     document.querySelector('.brewer').style.display = "none";
     document.querySelector('.shop').style.display = "block";
   }
+  document.querySelector('.unlockPrice').textContent = 15 * (1+level);
 }
 
 function convert() {
@@ -142,6 +144,14 @@ function brew() {
         ingredients.suspiciousMushroom--;
         currentRecipe = [];
       }
+      if (currentRecipe.length === recipes[2].length && currentRecipe.every((value, index) => value === recipes[2][index]) && ingredients.dilutedLiquid >= 1 && ingredients.fourLeafClover >= 1) {
+        alerts.textContent = "Congratulations! You made a 'Luck potion', earning you 8 coins.";
+        currency.points = currency.points + 5;
+        currency.coin = currency.coin + 8;
+        ingredients.dilutedLiquid--;
+        ingredients.fourLeafClover--;
+        currentRecipe = [];
+      }
     }
     else {
       alerts.textContent = "An error occurred while brewing. Did you: A) forget to include 'blank' for no ingredients or B) you ran out of ingredients?";
@@ -208,6 +218,15 @@ function purchase() {
           alerts.textContent = "No funds available!";
         }
         break;
+      case '4-LEAF CLOVER':
+        if (currency.coin >= 5) {
+          currency.coin = currency.coin - 2;
+          ingredients.fourLeafClover++;
+          alerts.textContent = "Purchased!";
+        } else {
+          alerts.textContent = "No funds available!";
+        }
+        break;
 
       default:
         alerts.textContent = "The item you tried to purchase is not valid.";
@@ -223,11 +242,11 @@ function travel() {
     if (locs.unlockedLocs[i] == inputs.travelInput.value.toUpperCase()) {
 
       if (locs.currentLoc != inputs.travelInput.value.toUpperCase()) {
-        if (currency.coin >= 10) {
+        if (currency.coin >= 7) {
           locs.currentLoc = inputs.travelInput.value.toUpperCase();
           alerts.textContent = "Traveled to " + inputs.travelInput.value.toUpperCase();
           document.querySelector('.location').textContent = inputs.travelInput.value.toUpperCase();
-          currency.coin = currency.coin - 10;
+          currency.coin = currency.coin - 7;
           currency.points = currency.points + 1;
           updateVals();
         }
@@ -248,7 +267,39 @@ function travel() {
   }
 }
 
+function unlock() {
+  if (currency.research >= 15*(level+1)) {
+    switch (level) {
+      case 0:
+        recipes.push(['4-LEAF CLOVER', 'DILUTED LIQUID', 'BLANK']);
+        ingredients.fourLeafCloverDisplay.style.display = "block";
+        ingredients.fourLeafCloverMarket.style.display = "block";
+        currency.research = currency.research - 15*(level+1);
+        ingredients.knownItems.push("4-LEAF CLOVER");
+        level++;
+        break;
+
+      default:
+        alerts.textContent = 'Hurray! You unlocked ALL of the recipes... for now ;)';
+        break;
+    }
+  } else {
+    alerts.textContent = "Error: Not enough funds! Convert your coins into research.";
+  }
+  updateVals();
+}
+
+//hacks
+function hack() {
+  currency.coin = currency.coin + 10000000;
+  currency.research = currency.research + 10000000;
+  updateVals();
+  alerts.textContent = "Hacked.";
+}
+
 //ON START
 ingredients.fourLeafCloverDisplay.style.display = "none";
+ingredients.fourLeafCloverMarket.style.display = "none";
 lockedRecipes.luckRecipe.style.display = "none";
+lockedRecipes.concentratedFluids.style.display = "none";
 updateVals();
