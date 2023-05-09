@@ -273,6 +273,7 @@ function unlock() {
       case 0:
         recipes.push(['4-LEAF CLOVER', 'DILUTED LIQUID', 'BLANK']);
         ingredients.fourLeafCloverDisplay.style.display = "block";
+        lockedRecipes.luckRecipe.style.display = "block";
         ingredients.fourLeafCloverMarket.style.display = "block";
         currency.research = currency.research - 15*(level+1);
         ingredients.knownItems.push("4-LEAF CLOVER");

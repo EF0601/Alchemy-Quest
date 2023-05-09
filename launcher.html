@@ -1,60 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alchemy Quest - Launcher</title>
-    <link rel="stylesheet" href="tab.css">
-</head>
-<body>
-    <div class="container">
-        <div class="sidebar">
-            <h1>NAME</h1>
-        </div>
-        <div class="main">
-            <div class="tab">
-                <button class="tablinks" onclick="openTab(event, 'play')" title="Play"><i class="fas fa-rocket"></i></button>
-                <button class="tablinks" onclick="openTab(event, 'screenshots')" title="screenshots"><i class="fas fa-desktop"></i></button>
-                <button class="tablinks" onclick="openTab(event, 'releaseNotes')" title="Release notes"><i class="fas fa-sticky-note"></i></button>
-                <button class="tablinks" onclick="openTab(event, 'credits')" title="Credits"><i class="fas fa-user-plus"></i></button>
-                <button class="tablinks" onclick="openTab(event, 'github')" title="Github page"><i class="fab fa-github"></i></button>
-              </div>
-              
-              <div id="play" class="tabcontent">
-                <h2>Launch Game</h2>
-                <p>When you use the official launcher(this one), the latest published version will be launched. For other versions, check out our github.</p>
 
-                <button>Launch <i class="fas fa-rocket"></i></button>
-              </div>
-              
-              <div id="screenshots" class="tabcontent">
-                <h2>Screenshots</h2>
-                <p>Some screenshots showing you the action in our game.</p> 
-              </div>
-              
-              <div id="releaseNotes" class="tabcontent">
-                <h2>Release notes</h2>
-                <h3>You're on version 1.0.1</h3>
-                <br>
-                <h4>Summary</h4>
-                <p>Version 1.0.1 contains the most recent bug fixes, as well as one additional potion recipe.</p>
-                <h4>Full list</h4>
-                    <p>Full 1.0</p>
-                    <p>Bug fix: locked recipes</p>
-                    <p>Additional recipe</p>
-              </div>
-              <div id="credits" class="tabcontent">
-                <h3>Tokyo</h3>
-                <p>Tokyo is the capital of Japan.</p>
-              </div>
-              <div id="github" class="tabcontent">
-                <h3>Tokyo</h3>
-                <p>Tokyo is the capital of Japan.</p>
-              </div>
-        </div>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alchemy Quest - Launcher</title>
+  <link rel="stylesheet" href="tab.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="sidebar">
+      <h1>NAME</h1>
     </div>
+    <div class="main">
+      <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'play')" title="Play"><i class="fas fa-rocket"></i></button>
+        <button class="tablinks" onclick="openTab(event, 'screenshots')" title="screenshots"><i
+            class="fas fa-desktop"></i></button>
+        <button class="tablinks" onclick="openTab(event, 'releaseNotes')" title="Release notes"><i
+            class="fas fa-sticky-note"></i></button>
+        <button class="tablinks" onclick="openTab(event, 'credits')" title="Credits"><i
+            class="fas fa-user-plus"></i></button>
+        <button class="tablinks" onclick="openTab(event, 'github')" title="Github page"><i
+            class="fab fa-github"></i></button>
+      </div>
+
+      <div id="play" class="tabcontent">
+        <h2>Launch Game</h2>
+        <p>When you use the official launcher(this one), the latest published version will be launched. For other
+          versions, check out our github.</p>
+
+        <button onclick="location.replace('./main.html')">Launch <i class="fas fa-rocket"></i></button>
+      </div>
+
+      <div id="screenshots" class="tabcontent">
+        <h2>Screenshots</h2>
+        <p>Some screenshots showing you the action in our game.</p>
+      </div>
+
+      <div id="releaseNotes" class="tabcontent">
+        <h2>Release notes</h2>
+        <h3>You're on version 1.0.1</h3>
+        <br>
+        <h4>Summary</h4>
+        <p>Version 1.0.1 contains the most recent bug fixes, as well as one additional potion recipe.</p>
+        <h4>Full list</h4>
+        <p>Full 1.0</p>
+        <p>Bug fix: locked recipes</p>
+        <p>Additional recipe</p>
+      </div>
+      <div id="credits" class="tabcontent">
+        <h3>Credits</h3>
+        <p>Everything completed by EF0601 and Guuuuest0001</p>
+      </div>
+      <div id="github" class="tabcontent">
+        <h3>Github</h3>
+        <p>View us on github!</p>
+        <button onclick="location.replace('https://github.com/EF0601/Alchemy-Quest/tree/main')"><i class="fab fa-github"></i></button>
+      </div>
+    </div>
+  </div>
 </body>
 <script src="tab.js"></script>
 <script src="https://kit.fontawesome.com/d74ce8ecb4.js" crossorigin="anonymous"></script>
+
 </html>
